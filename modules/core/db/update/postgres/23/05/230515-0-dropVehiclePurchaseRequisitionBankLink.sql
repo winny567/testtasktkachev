@@ -1,0 +1,1 @@
+alter table testtasktkachev_vehicle_purchase_requisition_bank_link rename to TESTTASKTKACHEV_VEHICLE_PURCHASE_REQUISITION_BANK_LINK__U79826 ;

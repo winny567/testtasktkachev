@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2023 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
+        class="com.company.testtasktkachev.web.ui.carmodel.CarModelBrowse"
+        messagesPack="com.company.testtasktkachev.web.ui.carmodel"
+        caption="msg://browseCaption"
+        lookupComponent="carModelsTable"
+        focusComponent="genericFilter">
+    <dsContext>
+        <collectionDatasource id="carModelsDs"
+                              class="com.company.testtasktkachev.entity.CarModel"
+                              view="browse">
+            <query>
+                <![CDATA[select e from testtasktkachev$CarModel e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout>
+        <vbox id="filterBox" expand="table-panel" spacing="true" height="100%">
+            <filter id="genericFilter"
+                    datasource="carModelsDs" stylename="edit-area" applyTo="carModelsTable">
+                <properties include=".*"/>
+            </filter>
+            <vbox id="table-panel" expand="carModelsTable" spacing="true">
+                <table id="carModelsTable"
+                       width="100%"
+                       presentations="true"
+                       multiselect="true">
+                    <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                        <button id="createBtn"
+                                action="carModelsTable.create"/>
+                        <thesis:separator/>
+                        <button id="editBtn"
+                                action="carModelsTable.edit"/>
+                        <button id="removeBtn"
+                                action="carModelsTable.remove"/>
+                    </buttonsPanel>
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <rowsCount/>
+                    <columns>
+                        <column id="name"/>
+                        <column id="code"/>
+                        <column id="note"/>
+                    </columns>
+                    <rows datasource="carModelsDs"/>
+                </table>
+            </vbox>
+        </vbox>
+    </layout>
+</window>

@@ -1,0 +1,1 @@
+alter table TESTTASKTKACHEV_VEHICLE_PURCHASE_REQUISITION add column IS_PAY_CAR boolean ;
