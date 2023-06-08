@@ -79,6 +79,16 @@
                 <![CDATA[select o from df$Organization o order by o.name]]>
             </query>
         </collectionDatasource>
+        <collectionDatasource id="carDs" class="com.company.testtasktkachev.entity.Car" view="car-view">
+            <query>
+                <![CDATA[select c from testtasktkachev$Car c order by c.name]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="bankDs" class="com.haulmont.thesis.core.entity.Bank" view="_local">
+            <query>
+                <![CDATA[select b from df$Bank b]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <assign name="width" value="theme://thesis.gui.editor-fields.width"/>
     <assign name="small_width" value="180px"/>
@@ -136,7 +146,8 @@
                                         <rows>
                                             <row id="docCategoryRow">
                                                 <lookupPickerField id="docCategory" caption="msg://docCategory"
-                                                                   datasource="cardDs" property="docCategory"
+                                                                   datasource="cardDs" visible="false"
+                                                                   property="docCategory"
                                                                    optionsDatasource="categoryDs" width="${width}">
                                                     <actions>
                                                         <action id="open"/>
@@ -145,7 +156,7 @@
                                             </row>
                                             <row id="ownerRow">
                                                 <lookupPickerField id="owner" caption="msg://owner"
-                                                                   datasource="cardDs"
+                                                                   datasource="cardDs" visible="false"
                                                                    property="owner" optionsDatasource="ownerDs"
                                                                    width="${width}">
                                                     <actions>
@@ -155,14 +166,15 @@
                                             </row>
                                             <row id="orgRow">
                                                 <lookupPickerField id="organization" caption="msg://organization"
-                                                                   datasource="cardDs"
+                                                                   datasource="cardDs" visible="false"
                                                                    optionsDatasource="organizationDs"
                                                                    property="organization" width="${width}">
                                                 </lookupPickerField>
                                             </row>
                                             <row id="depRow">
                                                 <lookupPickerField id="department" caption="msg://department"
-                                                                   datasource="cardDs" property="department"
+                                                                   datasource="cardDs" visible="false"
+                                                                   property="department"
                                                                    optionsDatasource="departmentDs"
                                                                    width="${width}">
                                                     <actions>
@@ -186,6 +198,22 @@
                                                         <action id="lookup"/>
                                                     </actions>
                                                 </lookupPickerField>
+                                            </row>
+                                            <row id="carRow">
+                                                <lookupPickerField id="carPickerField" datasource="cardDs"
+                                                                   property="car"
+                                                                   caption="msg://com.company.testtasktkachev.entity/Car"
+                                                                   optionsDatasource="carDs"/>
+                                            </row>
+                                            <row id="bankRow">
+                                                <lookupField id="bankPickerField" datasource="cardDs"
+                                                             property="bank" optionsDatasource="bankDs"
+                                                             caption="msg://com.company.testtasktkachev.entity/VehiclePurchaseRequisition.bank"/>
+                                            </row>
+                                            <row id="isPayRow">
+                                                <checkBox id="isPayCarCheckBox" datasource="cardDs"
+                                                          property="isPayCar"
+                                                          caption="msg://com.company.testtasktkachev.entity/VehiclePurchaseRequisition.isPayCar"/>
                                             </row>
                                             <row id="checkBoxesRow">
                                                 <vbox id="checkBoxesBox" stylename="thesis-checkbox-box" spacing="true">

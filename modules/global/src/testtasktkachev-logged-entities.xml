@@ -8,6 +8,6 @@
 <entities xmlns="http://schemas.haulmont.com/thesis/4.0/loggedEntities.xsd">
 
     <entity metaClass="testtasktkachev$CarModel"/>
-    <entity metaClass="testtasktkachev$CarCard"/>
     <entity metaClass="testtasktkachev$VehiclePurchaseRequisition"/>
+    <entity metaClass="testtasktkachev$Car"/>
 </entities>

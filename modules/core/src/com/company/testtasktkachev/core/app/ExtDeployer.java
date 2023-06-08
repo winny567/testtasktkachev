@@ -5,14 +5,17 @@ import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.app.ServerConfig;
 import com.haulmont.cuba.core.entity.Config;
+import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.core.sys.AppContext;
 import com.haulmont.cuba.security.app.Authenticated;
 import com.haulmont.cuba.security.app.EntityLogAPI;
+import com.haulmont.cuba.security.entity.Role;
 import com.haulmont.reports.entity.Report;
 import com.haulmont.reports.entity.ReportScreen;
 import com.haulmont.thesis.core.app.AbstractDeployer;
 import com.haulmont.thesis.core.app.filter.FilterDeploymentTools;
 import com.haulmont.workflow.core.entity.Proc;
+import com.haulmont.workflow.core.entity.ProcRole;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -25,6 +28,7 @@ import javax.inject.Inject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +40,8 @@ public class ExtDeployer extends AbstractDeployer implements ExtDeployerMBean {
     protected EntityLogAPI entityLogAPI;
     @Inject
     protected FilterDeploymentTools filterDeploymentTools;
+    @Inject
+    protected Messages messages;
 
     public ExtDeployer() {
         createAppContextListener();
@@ -232,4 +238,50 @@ public class ExtDeployer extends AbstractDeployer implements ExtDeployerMBean {
             authentication.end();
         }
     }
+
+    @Override
+    @Authenticated
+    public String deployApprovalRequestsProcess() {
+        String result = deployProcesses(Collections.singletonList("Утверждение заявки"));
+        persistence.createTransaction().execute(new Transaction.Callable<Object>() {
+            @Override
+            public Object call(EntityManager em) {
+                Proc proc = (Proc) em.createQuery("select p from wf$Proc p where p.name = :name")
+                        .setParameter("name", "Утверждение заявки")
+                        .setView(Proc.class, "edit")
+                        .getFirstResult();
+                if (proc != null) {
+                    proc.setCode("application_approval");
+                    proc.setCardTypes(",testtasktkachev$VehiclePurchaseRequisition,");
+                    Role roleOperatorBank = (Role) em.createQuery("select r from sec$Role r where " +
+                            "r.name = 'operator_bank'").getFirstResult();
+                    Role roleManagerSalon = (Role) em.createQuery("select r from sec$Role r where " +
+                            "r.name = 'manager_salon'").getFirstResult();
+                    Role roleMaster = (Role) em.createQuery("select r from sec$Role r where " +
+                            "r.name = 'master'").getFirstResult();
+                    for (ProcRole procRole : proc.getRoles()) {
+                        switch (procRole.getCode()) {
+                            case "Оператор банка":
+                                procRole.setRole(roleOperatorBank);
+                                procRole.setSortOrder(0);
+                                break;
+                            case "Менеджер салона":
+                                procRole.setRole(roleManagerSalon);
+                                procRole.setSortOrder(1);
+                                break;
+                            case "Мастер":
+                                procRole.setRole(roleMaster);
+                                procRole.setSortOrder(2);
+                                break;
+                        }
+                        procRole.setName(messages.getMessage(getClass(), procRole.getCode()));
+                    }
+                    em.merge(proc);
+                }
+                return null;
+            }
+        });
+        return result;
+    }
+
 }

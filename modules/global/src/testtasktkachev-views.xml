@@ -8,35 +8,7 @@
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
     <view entity="testtasktkachev$CarModel" name="browse" extends="_local"/>
-    <view entity="testtasktkachev$CarModel" name="edit" extends="_local"/>
-    <view entity="testtasktkachev$CarCard" name="browse" extends="_local">
-        <property name="carModels" view="_minimal"/>
-        <property name="proc" view="_local"/>
-        <property name="substitutedCreator" view="_minimal"/>
-        <property name="createdBy"/>
-        <property name="createTs"/>
-    </view>
-    <view entity="testtasktkachev$CarCard" name="edit" extends="_local">
-        <property name="carModels" view="_minimal"/>
-        <property name="cardAdditionalInfo" view="_local"/>
-        <property name="proc" view="_local"/>
-        <property name="parentCard" view="card-tree-for-parent"/>
-        <property name="substitutedCreator" view="user-minimal"/>
-        <property name="category" view="_minimal"/>
-        <property name="procs" view="card-edit"/>
-        <property name="roles" view="card-edit"/>
-        <property name="attachments" view="card-edit"/>
-        <property name="createdBy"/>
-        <property name="createTs"/>
-        <property name="creator" view="user-minimal"/>
-    </view>
-    <view entity="testtasktkachev$CarCard" name="subCard" extends="_minimal">
-        <property name="procFamily">
-            <property name="card" view="_minimal"/>
-        </property>
-        <property name="number"/>
-        <property name="createTs"/>
-        <property name="description"/>
+    <view entity="testtasktkachev$CarModel" name="edit" extends="_local">
     </view>
     <view entity="testtasktkachev$VehiclePurchaseRequisition" name="browse" extends="_local">
         <property name="proc" view="proc-minimal"/>
@@ -76,6 +48,8 @@
         <property name="createdBy"/>
         <property name="createTs"/>
         <property name="packageDoc" view="with-proc-base-info"/>
+        <property name="car" view="_minimal"/>
+        <property name="bank" view="_minimal"/>
     </view>
     <view entity="testtasktkachev$VehiclePurchaseRequisition" name="cycle" extends="_local">
         <property name="docOfficeData" view="cycle"/>
@@ -108,5 +82,8 @@
         <property name="number"/>
         <property name="date"/>
         <property name="description"/>
+    </view>
+    <view entity="testtasktkachev$Car" name="car-view" extends="_local">
+        <property name="carModel" view="_minimal"/>
     </view>
 </views>

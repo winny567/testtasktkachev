@@ -6,7 +6,36 @@
 
 <folders xmlns="http://schemas.haulmont.com/thesis/4.0/folders.xsd">
     <folder>
-        <name></name>
-        <sortOrder></sortOrder>
+        <name>AppFolder_purchaseOrdersForCars.new</name>
+        <sortOrder>8</sortOrder>
+        <parent>AppFolder_doc.docs</parent>
+        <roles>
+            <role>Administrators</role>
+            <role>manager_salon</role>
+        </roles>
+        <entity>testtasktkachev$VehiclePurchaseRequisition</entity>
+        <filterQuery>{E}.creator.id = :session$userId and {E}.category.entityType = 'testtasktkachev$VehiclePurchaseRequisition' and {E}.proc is null</filterQuery>
+    </folder>
+    <folder>
+        <name>AppFolder_purchaseOrdersForCars.assigned</name>
+        <sortOrder>9</sortOrder>
+        <parent>AppFolder_doc.docs</parent>
+        <roles>
+            <role>Administrators</role>
+            <role>master</role>
+            <role>manager_salon</role>
+            <role>operator_bank</role>
+        </roles>
+        <entity>testtasktkachev$VehiclePurchaseRequisition</entity>
+        <conditions>
+            <condition>
+                <process>application_approval</process>
+                <states>
+                    <state>Podgotovka</state>
+                    <state>Proverka_dokumentov</state>
+                    <state>Proverka_zayavki</state>
+                </states>
+            </condition>
+        </conditions>
     </folder>
 </folders>

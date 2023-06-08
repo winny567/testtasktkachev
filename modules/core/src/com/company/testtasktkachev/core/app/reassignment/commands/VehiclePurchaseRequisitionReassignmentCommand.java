@@ -10,11 +10,10 @@ import com.haulmont.thesis.core.app.reassignment.commands.AbstractDocReassignmen
 import com.company.testtasktkachev.entity.VehiclePurchaseRequisition;
 
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 
 @Component(VehiclePurchaseRequisitionReassignmentCommand.NAME)
-public class VehiclePurchaseRequisitionReassignmentCommand extends AbstractDocReassignmentCommand<VehiclePurchaseRequisition> {
+public class VehiclePurchaseRequisitionReassignmentCommand extends AbstractDocReassignmentCommand<VehiclePurchaseRequisition>{
     protected static final String NAME = "testtasktkachev_VehiclePurchaseRequisitionReassignmentCommand";
 
     @PostConstruct

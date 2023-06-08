@@ -55,6 +55,7 @@
                                     <column flex="1"/>
                                 </columns>
                                 <rows>
+                                    <row></row>
                                 </rows>
                             </grid>
                         </hbox>

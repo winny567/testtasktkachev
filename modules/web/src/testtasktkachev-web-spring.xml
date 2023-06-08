@@ -14,5 +14,14 @@
     <context:component-scan base-package="com.company.testtasktkachev.web"/>
 
     <gui:screens base-packages="com.company.testtasktkachev.web "/>
+    <bean id="testtasktkachev_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="testtasktkachev_OrderService" value="com.company.testtasktkachev.service.OrderService"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="thesis_ProcessPopupMenu" class="com.company.testtasktkachev.web.ui.common.processmenu.ExtProcessPopupMenu"/>
 
 </beans>

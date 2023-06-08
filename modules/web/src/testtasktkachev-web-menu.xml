@@ -7,7 +7,7 @@
 
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application" insertBefore="administration">
-        <item id="testtasktkachev$CarCard.lookup"/>
+        <item screen="testtasktkachev$Car.browse" caption="mainMsg://menu_config.testtasktkachev$Car.browse"/>
     </menu>
     <item id="testtasktkachev$CarModel.lookup" insertAfter="ts$SubscriberEdm.browse"/>
     <item id="testtasktkachev$VehiclePurchaseRequisition.lookup" insertAfter="df$DocKind.browse"/>

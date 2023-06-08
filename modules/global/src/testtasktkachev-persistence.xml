@@ -12,7 +12,7 @@
                       transaction-type="RESOURCE_LOCAL">
 
         <class>com.company.testtasktkachev.entity.CarModel</class>
-        <class>com.company.testtasktkachev.entity.CarCard</class>
         <class>com.company.testtasktkachev.entity.VehiclePurchaseRequisition</class>
+        <class>com.company.testtasktkachev.entity.Car</class>
     </persistence-unit>
 </persistence>

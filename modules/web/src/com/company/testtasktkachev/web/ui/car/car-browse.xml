@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2023 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://carBrowse.caption"
@@ -6,8 +12,8 @@
         messagesPack="com.company.testtasktkachev.web.ui.car">
     <data readOnly="true">
         <collection id="carsDc"
-                    class="com.company.testtasktkachev.entity.Car" > 
-            <view   extends="_local"/>
+                    class="com.company.testtasktkachev.entity.Car">
+            <view extends="_local"/>
             <loader id="carsDl">
                 <query>
                     <![CDATA[select e from testtasktkachev$Car e]]>
@@ -24,43 +30,31 @@
                 dataLoader="carsDl">
             <properties include=".*"/>
         </filter>
-        
-<groupTable id="carsTable"
-        width="100%"
-        dataContainer="carsDc">
-    <actions>
-        <action id="create" type="create"/>
-    
-        <action id="edit" type="edit"/>
-    
-        <action id="remove" type="remove"/>
-    
-    </actions>
-    <columns>
-        <column  id="name"/>
-    
-        <column  id="issueDate"/>
-    
-        <column  id="price"/>
-    
-        <column  id="carType"/>
-    
-    </columns>
-    <rowsCount/>
-    <buttonsPanel id="buttonsPanel"
-                  alwaysVisible="true">
-        
-            <button id="createBtn" action="carsTable.create"/>                
-        
-            <button id="editBtn" action="carsTable.edit"/>                
-        
-            <button id="removeBtn" action="carsTable.remove"/>                
-        
-    </buttonsPanel>
-</groupTable>
+        <groupTable id="carsTable"
+                    width="100%"
+                    dataContainer="carsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="issueDate"/>
+                <column id="price"/>
+                <column id="carType"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="carsTable.create"/>
+                <button id="editBtn" action="carsTable.edit"/>
+                <button id="removeBtn" action="carsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
         </hbox>
-    </layout>                
+    </layout>
 </window>

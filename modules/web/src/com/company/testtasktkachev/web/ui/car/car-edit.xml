@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2023 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://carEdit.caption"
         focusComponent="form"
         messagesPack="com.company.testtasktkachev.web.ui.car">
     <data>
         <instance id="carDc"
-                    class="com.company.testtasktkachev.entity.Car" > 
-            <view   extends="_local"/>
+                  class="com.company.testtasktkachev.entity.Car">
+            <view extends="car-view"/>
             <loader/>
         </instance>
-        
+        <collection id="carModelDc"
+                    class="com.company.testtasktkachev.entity.CarModel">
+            <view extends="_minimal"/>
+            <loader id="carModelLoader">
+                <query>
+                    <![CDATA[select e from testtasktkachev$CarModel e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
-    
     <dialogMode height="600"
-                width="800"/>
-<layout expand="editActions" spacing="true">
-    
-        
-
-<form id="form" dataContainer="carDc">
-<column width="350px">
-	
-	<textField id="nameField" property="name"/>
-	
-	<dateField id="issueDateField" property="issueDate"/>
-	
-	<textField id="priceField" property="price"/>
-	
-	<lookupField id="carTypeField" property="carType"/>
-	
-</column>
-</form>
-
-        
-        
+                width="1200"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="carDc">
+            <column width="350px">
+                <vbox>
+                    <textField id="nameField" property="name" dataContainer="carDc"
+                               caption="msg://com.company.testtasktkachev.entity/Car.name"/>
+                </vbox>
+                <vbox>
+                    <dateField id="issueDateField" property="issueDate" dataContainer="carDc"
+                               caption="msg://com.company.testtasktkachev.entity/Car.issueDate"/>
+                </vbox>
+                <vbox>
+                    <textField id="priceField" property="price" dataContainer="carDc"
+                               caption="msg://com.company.testtasktkachev.entity/Car.price"/>
+                </vbox>
+                <vbox>
+                    <lookupField id="carTypeField" property="carType" dataContainer="carDc"
+                                 caption="msg://com.company.testtasktkachev.entity/Car.carType"/>
+                </vbox>
+                <vbox>
+                    <lookupPickerField id="carModelField" property="carModel" dataContainer="carDc" optionsContainer="carModelDc"
+                                       caption="msg://com.company.testtasktkachev.entity/Car.carModel"/>
+                </vbox>
+            </column>
+        </form>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

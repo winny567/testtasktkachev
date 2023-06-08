@@ -13,11 +13,6 @@
             template="com/company/testtasktkachev/web/ui/carmodel/car-model-edit.xml"/>
     <screen id="testtasktkachev$CarModel.lookup"
             template="com/company/testtasktkachev/web/ui/carmodel/car-model-browse.xml"/>
-    <screen id="testtasktkachev$CarCard.browse"
-            template="com/company/testtasktkachev/web/ui/carcard/car-card-browse.xml"/>
-    <screen id="testtasktkachev$CarCard.edit" template="com/company/testtasktkachev/web/ui/carcard/car-card-edit.xml"/>
-    <screen id="testtasktkachev$CarCard.lookup"
-            template="com/company/testtasktkachev/web/ui/carcard/car-card-browse.xml"/>
     <screen id="testtasktkachev$VehiclePurchaseRequisition.browse"
             template="com/company/testtasktkachev/web/ui/vehiclepurchaserequisition/vehicle-purchase-requisition-browse.xml"/>
     <screen id="testtasktkachev$VehiclePurchaseRequisition.edit"
@@ -26,4 +21,7 @@
             template="com/company/testtasktkachev/web/ui/vehiclepurchaserequisition/vehicle-purchase-requisition-browse.xml"/>
     <screen id="testtasktkachev$VehiclePurchaseRequisition.templateBrowse"
             template="com/company/testtasktkachev/web/ui/vehiclepurchaserequisition/vehicle-purchase-requisition-template-browse.xml"/>
+    <screen id="df$Individual.browseFrame"
+            template="com/company/testtasktkachev/web/ui/ext-individual-browse-frame.xml"/>
+    <screen id="df$Company.browseFrame" template="com/company/testtasktkachev/web/ui/ext-company-browse-frame.xml"/>
 </screen-config>
